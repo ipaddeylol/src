@@ -221,12 +221,21 @@ class PluginAPI extends stdClass{
 		}
 	}
 	
-	public function initAll(){
-		console("[INFO] Starting plugins...");
-		foreach($this->plugins as $p){
-			$p[0]->init(); //ARGHHH!!! Plugin loading randomly fails!!
+	public function initAll()
+	{
+		if(!$this->plugins)
+		{
+			console("[INFO] 0 Plugins loaded...");
 		}
-	}
+		else
+		{
+			$num = count($this->plugins);
+			console("[INFO] Loading $num plugins...");
+			foreach($this->plugins as $p)
+			{
+				$p[0]->init(); //ARGHHH!!! Plugin loading randomly fails!!
+			}
+		}
 }
 
 
