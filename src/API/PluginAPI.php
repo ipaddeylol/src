@@ -236,6 +236,7 @@ class PluginAPI extends stdClass{
 				$p[0]->init(); //ARGHHH!!! Plugin loading randomly fails!!
 			}
 		}
+	}
 }
 
 
