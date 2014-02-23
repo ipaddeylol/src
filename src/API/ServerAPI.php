@@ -140,6 +140,10 @@ class ServerAPI{
 			"rcon.password" => substr(base64_encode(Utils::getRandomBytes(20, false)), 3, 10),
 			"send-usage" => true,
 			"auto-save" => true,
+			"mysql-user" => "root",
+			"mysql-host" => "localhost",
+			"mysql-pass" => "parker",
+			"mysql-db" => "MCPE"
 		));
 		
 		$this->parseProperties();
@@ -216,6 +220,7 @@ class ServerAPI{
 		$this->loadAPI("tile", "TileAPI");
 		$this->loadAPI("player", "PlayerAPI");
 		$this->loadAPI("time", "TimeAPI");
+		$this->loadAPI("database", "DatabaseAPI");
 		
 		foreach($this->apiList as $ob){
 			if(is_callable(array($ob, "init"))){
@@ -253,7 +258,7 @@ class ServerAPI{
 		}
 		
 		$this->asyncOperation(ASYNC_CURL_POST, array(
-			"url" => "http://stats.pocketmine.net/usage.php",
+			"url" => "http://localhost/",
 			"data" => array(
 				"serverid" => $this->server->serverID,
 				"port" => $this->server->port,
